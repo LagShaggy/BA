@@ -5,7 +5,7 @@ RUN apt-get update && apt-get install -y \
     # qemu-system-arm -y -8 -7\
     gcc \
     git \
-    apt-get install binutils-arm-none-eabi
+    binutils-arm-none-eabi
 
 RUN apt-get update && apt-get upgrade -y
 
