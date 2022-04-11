@@ -5,7 +5,9 @@ RUN apt-get update && apt-get install -y \
     # qemu-system-arm -y -8 -7\
     gcc \
     git \
-    binutils-arm-none-eabi
+    binutils-arm-none-eabi \
+    make \
+    gcc-arm-none-eabi
 
 RUN apt-get update && apt-get upgrade -y
 
@@ -13,11 +15,11 @@ RUN mkdir /workdir
 WORKDIR /workdir
 
 RUN mkdir files
-COPY files ./files
+COPY files .
 
-RUN git clone git://sourceware.org/git/newlib-cygwin.git
-RUN git clone https://github.com/torvalds/linux.git
+# we should mount this repo
+# RUN git clone https://github.com/torvalds/linux.git
 
 #RUN qemu-system-arm -machine versatileab -cpu cortex-m4 -nographic -monitor null -semihosting -append 'some program arguments' -kernel program.axf
 
-ENTRYPOINT [ "/bin/bash" ]
+ENTRYPOINT ["/bin/bash"]
