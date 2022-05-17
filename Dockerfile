@@ -19,6 +19,7 @@ RUN apt-get update && apt-get install -y \
     libpci-dev \
     libiberty-dev \
     autoconf \
+    gcc-arm-linux-gnueabigcc \
 
 RUN apt-get update && apt-get upgrade -y
 
