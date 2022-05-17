@@ -18,9 +18,8 @@ RUN apt-get update && apt-get install -y \
     libudev-dev \
     libpci-dev \
     libiberty-dev \
-    autoconf \
-    gcc-arm-linux-gnueabigcc \
-
+    autoconf 
+        
 RUN apt-get update && apt-get upgrade -y
 
 RUN mkdir /workdir
