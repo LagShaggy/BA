@@ -18,14 +18,18 @@ RUN apt-get update && apt-get install -y \
     libudev-dev \
     libpci-dev \
     libiberty-dev \
-    autoconf 
-        
+    autoconf \
+    gcc-arm-linux-gnueabihf \
+    lzop \
+    bc
+
 RUN apt-get update && apt-get upgrade -y
 
 RUN mkdir /workdir
 WORKDIR /workdir
 
-RUN mkdir files
+RUN mkdir linux
+COPY linux-5.17.8.tar.xz ./linux
 COPY files .
 
 # we should mount this repo

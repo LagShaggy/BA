@@ -1,2 +1,2 @@
 docker build -t mcu-toolchain .
-docker run -it -v "./linux:/workdir/linux" mcu-toolchain 
+docker run -it -v "linux:/workdir/linux" mcu-toolchain 
