@@ -1,39 +1,18 @@
 FROM ubuntu:20.04
 
-RUN apt-get update && apt-get install -y \
-    qemu \
-    # qemu-system-arm -y -8 -7\
-    gcc \
-    git \
-    binutils-arm-none-eabi \
-    make \
-    gcc-arm-none-eabi \
-    libncurses-dev \
-    flex \
-    bison \
-    openssl \
-    libssl-dev \
-    dkms \
-    libelf-dev \
-    libudev-dev \
-    libpci-dev \
-    libiberty-dev \
-    autoconf \
-    gcc-arm-linux-gnueabihf \
-    lzop \
-    bc
-
-RUN apt-get update && apt-get upgrade -y
-
 RUN mkdir /workdir
 WORKDIR /workdir
+ADD workdir/ .
 
-RUN mkdir linux
-COPY linux-5.17.8.tar.xz ./linux
-COPY files .
+RUN apt-get update && apt-get upgrade -y
+RUN printf 'y\n8\n7\n' | apt-get install -y qemu-system-arm
+## make script executable
+RUN chmod u+x ./installscript.sh
+## convert DOS EOL to linux
+RUN sed -i -e 's/\r$//' ./installscript.sh
+RUN ./installscript.sh 
+## input all the commands for all installation prompts
 
-# we should mount this repo
-# RUN git clone https://github.com/torvalds/linux.git
 
 #RUN qemu-system-arm -machine versatileab -cpu cortex-m4 -nographic -monitor null -semihosting -append 'some program arguments' -kernel program.axf
 
